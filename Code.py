@@ -5,7 +5,8 @@ Auteur: The Cancer Team
 License = GPL-3
 '''
 import pandas as pd
-workbook = pd.read_excel(r'/Users/Hugo/Desktop/School/PREMIERE/TECH/OCTOBRE/Vacation Proj/Exel_datasheet.xlsx', usecols = 'A:B')
+url = "https://github.com/Makimousse/Cancer/raw/main/Exel_datasheet.xlsx" 
+workbook = pd.read_excel(url, usecols = 'A:B')
 workbook.head()
 sex = input('Please input your sex (H for male, F for female:')
 age = int(input('Please enter your age (between 2 and 90):'))
