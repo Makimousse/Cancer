@@ -1,7 +1,7 @@
 '''
 Ce programme donne le pourcentage de chance (au centième près) d'avoir un cancer quelconque selon une donnée age et sexe donnée par l'utilisateur.
 Les données de pourcentage proviennent de l'institut Cancer Research UK (https://bit.ly/2BOLDsE).
-Auteur: Hugo Chanet-Leyne et Martin-Charles Bartosik
+Auteur: The Cancer Team
 License = GPL-3
 '''
 import pandas as pd
