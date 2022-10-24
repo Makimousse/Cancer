@@ -14,5 +14,7 @@ percentage = str(df[sex].iloc[age])
 print("You have a "+ percentage+"% chance of having some type of cancer.")
 if age >= 15:
     gender_specific = pd.read_excel(url, usecols = 'H:I')
+    gender_specific.head()
+    sex = sex+"_canc"
     gen_spes_percent = str(gender_specific[sex].iloc[age])
     print("If you do have some kind of cancer, there is a 25.4% chance that it is prostate cancer. Prostate cancer has a"+gen_spes_percent+"% survival chance over 5 years")
