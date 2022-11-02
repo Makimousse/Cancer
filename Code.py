@@ -10,12 +10,27 @@ while True:
     url = "https://github.com/Makimousse/Cancer/raw/main/Exel_datasheet.xlsx" 
     df = pd.read_excel(url, usecols = 'A:B')
 
+    url2 = "https://github.com/Makimousse/Cancer/raw/main/Country%20canc%20data.xlsx" #second url variable to fetch country-specific cancer percentage rates
+    df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
+
     sex = input('Please input your sex (H for male, F for female):')
     age = int(input('Please enter your age (between 2 and 90):'))
     
     percentage = str(df[sex].iloc[age]) # Fetches the percentage data from row "sex" and line "age"
     
     print("You have a "+ percentage+"% chance of currently having some type of cancer.")
+
+    def other_countr():
+        H_baseline = 0.3932
+        F_baseline = 0.4141
+        coef = percentage / df[sex].iloc[49]
+        country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country you'd like to know your rates about, if no, input n:")
+        if country == "n":
+            break
+        else:
+            
+
+
 
     if age >= 15:
         sex2 = sex + "_canc" # The rows for the gender-specific cancer survival data are named H_canc and F_canc
@@ -27,6 +42,8 @@ while True:
         else:
             print("If you have some kind of cancer, there is a 30% chance that it is breast cancer. Breast cancer has a "+gen_spes_percent+"% survival chance ")
             print("over 5 years for your age")
+
+
     again = input("Run the program again? (y for yes, n for no):") #prompt to run the program again
     if again == "n":
         break
