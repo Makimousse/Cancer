@@ -20,17 +20,6 @@ while True:
     
     print("You have a "+ percentage+"% chance of currently having some type of cancer.")
 
-    def other_countr():
-        H_baseline = 0.3932
-        F_baseline = 0.4141
-        coef = percentage / df[sex].iloc[49]
-        country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country you'd like to know your rates about, if no, input n:")
-        if country == "n":
-            break
-        else:
-            
-
-
 
     if age >= 15:
         sex2 = sex + "_canc" # The rows for the gender-specific cancer survival data are named H_canc and F_canc
@@ -43,6 +32,14 @@ while True:
             print("If you have some kind of cancer, there is a 30% chance that it is breast cancer. Breast cancer has a "+gen_spes_percent+"% survival chance ")
             print("over 5 years for your age")
 
+
+    coef = float(percentage) / float(df[sex].iloc[49])
+    country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country you'd like to know your rates about, if no, input n:")
+    if country == "n":
+        break
+    else:
+        sumting = df_country[df_country['Country'] == country]
+        print(sumting)
 
     again = input("Run the program again? (y for yes, n for no):") #prompt to run the program again
     if again == "n":
