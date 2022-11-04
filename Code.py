@@ -4,6 +4,7 @@ The age and sex specific data is from the UK Cancer institute (https://bit.ly/2B
 Auteur: The Cancer Team
 License = GPL-3
 '''
+from numpy import str0
 import pandas as pd
 while True:
 
@@ -15,8 +16,7 @@ while True:
     sex = input('Please input your sex (H for male, F for female):')
     age = int(input('Please enter your age (between 2 and 90):'))
     
-    percentage = str(df[sex].iloc[age]) # Fetches the percentage data from row "sex" and line "age"
-    
+    percentage = df[sex].iloc[age] # Fetches the percentage data from row "sex" and line "age"
     percentage  = '%.4f' % round(percentage, 4) # Rounds the result to 4 digits after decimal point
 
     print("You have a "+ percentage+"% chance of currently having some type of cancer.")
@@ -47,7 +47,7 @@ while True:
         country_rates = [df_country['Rates'].iloc[row_find]] # Fetches the country-specific rates from the excel sheet with the row_find variable found earlier
         country_spes_percent = coef * country_rates[0] # Gets the final country, age and sex specific cancer chances 
         country_spes_percent  = '%.4f' % round(country_spes_percent, 4) # Rounds the percentage to 4 digits after the decimal point 
-        print("If you were in "+country+", you'd have a "+country_spes_percent+" of having some type of cancer")
+        print("If you were in "+country+", you'd have a "+country_spes_percent+"% chance of having some type of cancer")
 
     again = input("Run the program again? (y for yes, n for no):") #prompt to run the program again
     if again == "n":
