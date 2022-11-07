@@ -1,10 +1,9 @@
 '''
 This currently program indicates the user with it's chances of currently having cancer depending on his age, sex and country.
 The age and sex specific data is from the UK Cancer institute (https://bit.ly/2BOLDsE), and the country-specific data is from from the 2018 GLOBOCAN statistics survey (https://bit.ly/3DCvLrI).
-Auteur: The Cancer Team
+Author: The Cancer Team
 License = GPL-3
 '''
-from numpy import str0
 import pandas as pd
 while True:
 
@@ -39,10 +38,8 @@ while True:
     df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
 
     coef = float(percentage) / float(df[sex].iloc[49]) # Finds the coefficient to determine how chances of having cancer are affected by age, the data from the second excel book is somewhat based on an age of 49 for both men and women, so it is used as the reference point here. This coefficient is necessary since the second excel book doesnt indicate sex and age
-    country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country you'd like to know your rates about, if no, input n:") # Asks the user if they would like to know their chances of having cancer in other countries. This country input will be used throughout the code
-    if country == "n":
-        break
-    else:
+    country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country's name, if no, input 'n':") # Asks the user if they would like to know their chances of having cancer in other countries. This country input will be used throughout the code
+    if country != "n":
         row_find = df_country[df_country['Country'] == country].index.to_list() # This locates the row of the country in the excel book and indexes it to a list (the code doesnt work otherwise, not sure why)
         country_rates = [df_country['Rates'].iloc[row_find]] # Fetches the country-specific rates from the excel sheet with the row_find variable found earlier
         country_spes_percent = coef * country_rates[0] # Gets the final country, age and sex specific cancer chances 
