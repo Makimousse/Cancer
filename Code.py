@@ -11,10 +11,10 @@ while True:
 
     url = "https://github.com/Makimousse/Cancer/raw/main/Datasheet1-sex%26age.xlsx" # Url variable represents the dataset that will be used to fetch the data from a person's age and sex.
     df = pd.read_excel(url, usecols = 'A:B') # First dataframe that looks at the sex columns of the excel book
-
     sex = input('Please input your sex (H for male, F for female):')
     age = int(input('Please enter your age (between 2 and 90):'))
-    
+
+
     percentage = df[sex].iloc[age] # Fetches the percentage data from row "sex" and line "age"
     percentage  = '%.4f' % round(percentage, 4) # Rounds the result to 4 digits after decimal point
 
