@@ -15,7 +15,7 @@ while True:
 
 
     try: # Although the "try" function in Python is generally used to detect errors, I use it to filter invalid inputs (since they generate an error when running through the code)
-        sex = input('Please input your sex (H for male, F for female):')  
+        sex = input('Please input your sex (M for male, F for female):')  
         age = int(input('Please enter your age (between 2 and 90):'))
 
         percentage = df[sex].iloc[age] # Fetches the percentage data from row "sex" and line "age"
@@ -31,7 +31,7 @@ while True:
             df_sex = pd.read_excel(url, usecols = 'C:D') # Second dataframe for the gender-specific cancer data, or else python has a stroke for no reason
             
             gen_spes_percent = str(df_sex[sex2].iloc[age]) # Same as "percentage", but for the second dataframe
-            if sex2 == "H_canc":
+            if sex2 == "M_canc":
                 print("If you do have some kind of cancer, there is a 25.4% chance that it is prostate cancer. Prostate cancer has a "+gen_spes_percent+"% survival chance over 5 years for your age")
             else:
                 print("If you have some kind of cancer, there is a 30% chance that it is breast cancer. Breast cancer has a "+gen_spes_percent+"% survival chance over 5 years for your age")
