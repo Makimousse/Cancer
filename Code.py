@@ -4,15 +4,16 @@ The age and sex specific data is from the UK Cancer institute (https://bit.ly/2B
 Author: Kamikasie, ''' adad '''
 License = GPL-3
 """
-
 import pandas as pd
+from interval import interval, inf, imath
 while True:
 
 # This first part will indicate the basic chance of aving any type of cancer depending on one's age and sex
 
     url = "https://github.com/Makimousse/Cancer/raw/main/Datasheet1-sex%26age.xlsx" # Url variable represents the dataset that will be used to fetch the data from a person's age and sex.
     df = pd.read_excel(url, usecols = 'A:B') # First dataframe that looks at the sex columns of the excel book
-    
+
+
     try: # Although the "try" function in Python is generally used to detect errors, I use it to filter invalid inputs (since they generate an error when running through the code)
         sex = input('Please input your sex (H for male, F for female):')  
         age = int(input('Please enter your age (between 2 and 90):'))
