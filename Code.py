@@ -14,6 +14,9 @@ while True:
     url = "https://github.com/Makimousse/Cancer/raw/main/Datasheet1-sex%26age.xlsx" # Url variable represents the dataset that will be used to fetch the data from a person's age and sex.
     df = pd.read_excel(url, usecols = 'A:B') # First dataframe that looks at the sex columns of the excel book
 
+    url2 = "https://github.com/Makimousse/Cancer/raw/main/Datasheet2-country.xlsx" # Second url variable to fetch country-specific cancer percentage rates. I use a different excel sheet to not confuse the two
+    df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
+
 
     try: # Although the "try" function in Python is generally used to detect errors, I use it to filter invalid inputs (since they generate an error when running through the code)
         sex = input('Please input your sex (M for male, F for female):')  
@@ -39,10 +42,7 @@ while True:
 
 
     #This next part will ask the user if they would like to know their chances of having any type of cancer in other 1rst world countries
-
-        url2 = "https://github.com/Makimousse/Cancer/raw/main/Datasheet2-country.xlsx" # Second url variable to fetch country-specific cancer percentage rates. I use a different excel sheet to not confuse the two
-        df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
-
+    
         coef = float(percentage) / float(df[sex].iloc[49]) # Finds the coefficient to determine how chances of having cancer are affected by age, the data from the second excel book is somewhat based on an age of 49 for both men and women, so it is used as the reference point here. This coefficient is necessary since the second excel book doesnt indicate sex and age
         
         country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country's name, if no, input 'n':") # Asks the user if they would like to know their chances of having cancer in other countries. This country input will be used throughout the code
