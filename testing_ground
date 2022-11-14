@@ -17,11 +17,13 @@ df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
 
 sex = input('Please input your sex (M for male, F for female):')  
 age = int(input('Please enter your age (between 2 and 90):'))
+country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country's name, if no, input 'n':") # Asks the user if they would like to know their chances of having cancer in other countries. This country input will be used throughout the code
 
 def base_percentage(): # Function gives the user his basic chance of having any type of cancer
     global percentage 
     percentage = df[sex].iloc[age] # Fetches the percentage data from row "sex" and line "age"
     percentage  = '%.4f' % round(percentage, 4) # Rounds the result to 4 digits after decimal point
+            
 
 def gen_spes():
     global gen_spes_percent
@@ -32,10 +34,8 @@ def gen_spes():
         
     gen_spes_percent = str(df_sex[sex2].iloc[age]) # Same as "percentage", but for the second dataframe
     
-
-country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country's name, if no, input 'n':") # Asks the user if they would like to know their chances of having cancer in other countries. This country input will be used throughout the code
-
 def country_percent():
+    global country_spes_percent
     coef = float(percentage) / float(df[sex].iloc[49]) # Finds the coefficient to determine how chances of having cancer are affected by age, the data from the second excel book is somewhat based on an age of 49 for both men and women, so it is used as the reference point here. This coefficient is necessary since the second excel book doesnt indicate sex and age
     row_find = df_country[df_country['Country'] == country].index.to_list() # This locates the row of the country in the excel book and indexes it to a list (the code doesnt work otherwise, not sure why)
     
