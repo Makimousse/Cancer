@@ -58,12 +58,11 @@ while True:
         else:
             break
 
-        again = input("Run the program again? (y for yes, n for no):") # Prompt to run the program again
-        if again == "n":
+        again = input("Run the program again? (y for yes, anything else for no):") # Prompt to run the program again
+        if again != "y":
             break
 
     except: # The except function works in relation with the "try" above, it is triggered when an error happens in the code (ex: an invalid input), and will ask the user to try again
-        again2 = input("You inputted a wrong value! Run the program again? (y for yes, n for no):") # Prompt to run the program again because of an error in the inputs
-        
-        if again2 == "n":
+        again2 = input("You inputted a wrong value! Run the program again? (y for yes, anything else for no):") # Prompt to run the program again because of an error in the inputs
+        if again2 != "y":
             break
