@@ -20,7 +20,7 @@ while True:
 
     try: # Although the "try" function in Python is generally used to detect errors, I use it to filter invalid inputs (since they generate an error when running through the code)
         sex = input('Please input your sex (M for male, F for female):')  
-        age = int(input('Please enter your age (between 2 and 90):'))
+        age = int(input('Please enter your age (between 2 and 90):')) 
 
         percentage = df[sex].iloc[age] # Fetches the percentage data from row "sex" and line "age"
         percentage  = '%.4f' % round(percentage, 4) # Rounds the result to 4 digits after decimal point
