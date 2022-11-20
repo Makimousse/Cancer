@@ -38,7 +38,7 @@ def input_country(): # This function asks for the user's country
     country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country's name, if no, input 'n':") # Asks the user if they would like to know their chances of having cancer in other countries. This country input will be used throughout the code
     return country
 def country_check(country): # This function creates a bool to check if the country is part of the second excel book's
-    country_list_file = open('https://drive.google.com/uc?export=download&id=1MWCGLVp9pHzUiRB3slXxp5VqL5BchKgv', 'r') # Instead of writing in the code a long list of countries, we here fetch this list from an external file
+    country_list_file = open('Country_list.txt', 'r') # Instead of writing in the code a long list of countries, we here fetch this list from an external file
     file_contents = country_list_file.read() # This interprets the contents of the external file
     country_list_check = country in file_contents
     return country_list_check
