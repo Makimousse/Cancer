@@ -62,34 +62,37 @@ def country_percent(sex,country, percentage): # Finds the user's chances of havi
     country_spes_percent  = '%.4f' % round(country_spes_percent, 4) # Rounds the percentage to 4 digits after the decimal point 
     return country_spes_percent
 
-def big_inputs(sex, age, country):
+
+def main(): #The main is the 'mother function' and will generate all printed code
+    # All lines of code with 'variable' = 'function()' simply gather the returned data for these respective functions
+
+
+    # This first "Big section" of the main, it covers inputs and manages errors for them:
     sex, sex_check_list = input_sex() 
-    while sex_check_list == False: #This first "paragraph" is dedicated for the sex inputs and filtering invalid inputs
+    while sex_check_list == False:  #This first "paragraph" is dedicated for the sex inputs and filtering invalid inputs
         sex, sex_check_list = input_sex()
 
     age = input_age()
     age_range_check = age_checks(age)
-    while age_range_check == False:
-        age = input_age()           # This other one is dedicated for age inputs
+    while age_range_check == False:      # This other one is dedicated for age inputs
+        age = input_age()           
         age_range_check = age_checks(age)
 
     country = input_country()     #And this one for country inputs
 
 
-def main():
-    
-    big_inputs()
-
-    round_percentage, percentage = base_percentage(sex,age)
+    # This second big secion takes care of percentage data and printing them:
+    round_percentage, percentage = base_percentage(sex,age) 
     print("You have a "+ str(round_percentage)+"% chance of currently having some type of cancer.")
 
-    if age >= 15:
-        gen_spes_percent, sex2 = gen_spes(sex,age)
-        if sex2 == "M_canc":
+    if age >= 15: 
+        gen_spes_percent, sex2 = gen_spes(sex,age) 
+        if sex2 == "M_canc": # Simply chooses what kind of gender-specific cancer survival rate to print out
             print("If you do have some kind of cancer, there is a 25.4% chance that it is prostate cancer. Prostate cancer has a "+gen_spes_percent+"% survival chance over 5 years for your age")
         else:
             print("If you have some kind of cancer, there is a 30% chance that it is breast cancer. Breast cancer has a "+gen_spes_percent+"% survival chance over 5 years for your age")
-    if country != "n":
+    
+    if country != "n": # Checks if the user wants his country-specific rates
         country_spes_percent = country_percent(sex,country,percentage)
         print("If you were in "+country+", you'd have a "+country_spes_percent+"% chance of having some type of cancer")
     
