@@ -2,7 +2,7 @@
 The program currently indicates the user with it's chances of having cancer depending on his age, sex and country.
 The age and sex specific data is from the UK Cancer institute (https://bit.ly/2BOLDsE), and the country-specific data is from from the 2018 GLOBOCAN statistics survey (https://bit.ly/3DCvLrI).
 This program is NOT about accuracy of the data (although we're constantly trying to make it more accurate), it is just a high-school assignement, please don't bully us.
-Author: Kamikasie, ''' adad '''
+Author: Cameron Ingham, Hugo Chanet-Leyne
 License = GPL-3
 """
 import pandas as pd
