@@ -62,8 +62,7 @@ def country_percent(sex,country, percentage): # Finds the user's chances of havi
     country_spes_percent  = '%.4f' % round(country_spes_percent, 4) # Rounds the percentage to 4 digits after the decimal point 
     return country_spes_percent
 
-
-def main():
+def big_inputs(sex, age, country):
     sex, sex_check_list = input_sex() 
     while sex_check_list == False: #This first "paragraph" is dedicated for the sex inputs and filtering invalid inputs
         sex, sex_check_list = input_sex()
@@ -77,8 +76,13 @@ def main():
     country = input_country()     #And this one for country inputs
 
 
+def main():
+    
+    big_inputs()
+
     round_percentage, percentage = base_percentage(sex,age)
     print("You have a "+ str(round_percentage)+"% chance of currently having some type of cancer.")
+
     if age >= 15:
         gen_spes_percent, sex2 = gen_spes(sex,age)
         if sex2 == "M_canc":
