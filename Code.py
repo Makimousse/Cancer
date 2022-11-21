@@ -2,7 +2,7 @@
 The program currently indicates the user with it's chances of having cancer depending on his age, sex and country.
 The age and sex specific data is from the UK Cancer institute (https://bit.ly/2BOLDsE), and the country-specific data is from from the 2018 GLOBOCAN statistics survey (https://bit.ly/3DCvLrI).
 This program is NOT about accuracy of the data (although we're constantly trying to make it more accurate), it is just a high-school assignement, please don't bully us.
-Author: Cameron Ingham, Hugo Chanet-Leyne
+Author: ''' adad '''
 License = GPL-3
 """
 import pandas as pd
@@ -88,7 +88,7 @@ def main(): #The main is the 'mother function' and will generate all printed cod
 
     country = input_country()     
     country_list_check = country_check(country)
-    while country_list_check == False:      #And this one for country inputs
+    while country_list_check == False:      # And this one for country inputs
         country = input_country()    
         country_list_check = country_check(country)
 
@@ -113,3 +113,26 @@ def main(): #The main is the 'mother function' and will generate all printed cod
     
 main()
 
+'''
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than right now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+—Tim Peters'''
+
+'''When I wrote this code, only God and I understood what I did. Now only God knows'''
