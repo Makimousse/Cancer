@@ -14,22 +14,22 @@ df_sex = pd.read_excel(url, usecols = 'C:D') # Second dataframe for the gender-s
 url2 = "https://github.com/Makimousse/Cancer/raw/main/Datasheet2-country.xlsx" # Second url variable to fetch country-specific cancer percentage rates. I use a different excel sheet to not confuse the two
 df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
 
-
+# On all of these funcitons, when the "return" statement is used, the code simply associates the function with the values
 
 def input_sex(): # This function will ask the user for his sex and check if the sex is correct with a bool
     sex = input('Please input your sex (M for male, F for female):')
-    sex_check_list= sex in ['F','M']
+    sex_check_list= sex in ['F','M'] # This list contains the valid sex inputs, the code will check if the input is in the list and return a bool
     return sex, sex_check_list
 
 def input_age(): #This function asks the user for his age, it also manages non-integer inputs with a "try" and "except"
     while True: #The while True is used to repeat the loop
-        try: # If this line poses no errors, the loop breaks and everyone is happy
+        try: # If this line poses no errors, the loop breaks and everyone is happy, the try and except are used to check if the input is an integer
             age = int(input('Please enter your age (between 2 and 90):'))
             break 
         except: # If there is an error, it will restart the function
             input_age()
     return age
-def age_checks(age): # This function creates a bool to check if the age is in the correct range
+def age_check(age): # This function creates a bool to check if the age is in the correct range
     age_list = [*range(2, 90)]
     age_range_check = age in age_list
     return age_range_check
@@ -66,22 +66,25 @@ def country_percent(sex,country, percentage): # Finds the user's chances of havi
     country_spes_percent  = '%.4f' % round(country_spes_percent, 4) # Rounds the percentage to 4 digits after the decimal point 
     return country_spes_percent
 
+def try_again(): # This function will ask the user if they would like to restart the program
+    try_prompt = input("Would you like to run the program again? Input anything if yes, input 'n' if no:")
+    if try_prompt != "n":
+        main()
 
 def main(): #The main is the 'mother function' and will generate all printed code
     # All lines of code with 'variable' = 'function()' simply gather the returned data for these respective functions
 
-
-    # This first "Big section" of the main, it covers inputs and manages errors for them:
+    # This first "Big section" of the main will cover inputs and will manage errors for them:
     # These all function on the same principle: the functions asign a bool with the variable (True if the variable is good, False if not), and these lines of code will force the user to try again if the input is invalid
     sex, sex_check_list = input_sex() 
     while sex_check_list == False:  #This first "paragraph" is dedicated for the sex inputs and filtering invalid inputs
         sex, sex_check_list = input_sex()
 
     age = input_age()
-    age_range_check = age_checks(age)
+    age_range_check = age_check(age)
     while age_range_check == False:      # This other one is dedicated for age inputs
         age = input_age()           
-        age_range_check = age_checks(age)
+        age_range_check = age_check(age)
 
     country = input_country()     
     country_list_check = country_check(country)
@@ -104,6 +107,8 @@ def main(): #The main is the 'mother function' and will generate all printed cod
     if country != "n": # Checks if the user wants his country-specific rates
         country_spes_percent = country_percent(sex,country,percentage)
         print("If you were in "+country+", you'd have a "+country_spes_percent+"% chance of having some type of cancer")
+
+    try_again() # This simply runs the try_again function at the end of the main
     
     
 main()
