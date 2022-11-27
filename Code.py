@@ -15,6 +15,8 @@ df_sex = pd.read_excel(url, usecols = 'C:D') # Second dataframe for the gender-s
 url2 = "https://github.com/Makimousse/Cancer/raw/main/Datasheet2-country.xlsx" # Second url variable to fetch country-specific cancer percentage rates. I use a different excel sheet to not confuse the two
 df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
 
+translator = Translator()
+
 # On all of these funcitons, when the "return" statement is used, the code simply associates the function with the values
 
 def input_sex(): # This function will ask the user for his sex and check if the sex is correct with a bool
@@ -42,7 +44,7 @@ def country_check(country): # This function creates a bool to check if the count
     country_list_file = open('Country_list.txt', 'r') # Instead of writing in the code a long list of countries, we here fetch this list from an external file
     file_contents = country_list_file.read() # This interprets the contents of the external file
     country_list_check = country in file_contents
-    return country_list_check
+    return country_list_check, file_contents
 
 
 
@@ -58,10 +60,10 @@ def gen_spes(sex, age): # Finds the user's survival chances for gender-specific 
     gen_spes_percent = str(df_sex[sex2].iloc[age]) # Same as "percentage", but for the second dataframe
     return gen_spes_percent, sex2
     
-def country_percent(sex,country, percentage): # Finds the user's chances of having cancer in otehr countries
+def country_percent(sex,country,percentage,file_contents): # Finds the user's chances of having cancer in otehr countries
     coef = float(percentage) / float(df[sex].iloc[49]) # Finds the coefficient to determine how chances of having cancer are affected by age, the data from the second excel book is somewhat based on an age of 49 for both men and women, so it is used as the reference point here. This coefficient is necessary since the second excel book doesnt indicate sex and age
-    row_find = df_country[df_country['Country'] == country].index.to_list() # This locates the row of the country in the excel book and indexes it to a list (the code doesnt work otherwise, not sure why)
-
+    #row_find = df_country[df_country['Country'] == country].index.to_list() # This locates the row of the country in the excel book and indexes it to a list (the code doesnt work otherwise, not sure why)
+    row_find = file_contents.index(country) + 1
     country_rates = [df_country['Rates'].iloc[row_find]] # Fetches the country-specific rates from the excel sheet with the row_find variable found earlier
     country_spes_percent = coef * country_rates[0] # Gets the final country, age and sex specific cancer chances 
     country_spes_percent  = '%.4f' % round(country_spes_percent, 4) # Rounds the percentage to 4 digits after the decimal point 
@@ -106,7 +108,8 @@ def main(): #The main is the 'mother function' and will generate all printed cod
             print("If you have some kind of cancer, there is a 30% chance that it is breast cancer. Breast cancer has a "+gen_spes_percent+"% survival chance over 5 years for your age")
     
     if country != "n": # Checks if the user wants his country-specific rates
-        country_spes_percent = country_percent(sex,country,percentage)
+        country_list_check, file_contents = country_check(country)
+        country_spes_percent = country_percent(sex,country,percentage,file_contents)
         print("If you were in "+country+", you'd have a "+country_spes_percent+"% chance of having some type of cancer")
 
     try_again() # This simply runs the try_again function at the end of the main
