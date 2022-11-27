@@ -6,6 +6,7 @@ Author: ''' adad '''
 License = GPL-3
 """
 import pandas as pd
+from googletrans import Translator
 
 url = "https://github.com/Makimousse/Cancer/raw/main/Datasheet1-sex%26age.xlsx" # Url variable represents the dataset that will be used to fetch the data from a person's age and sex.
 df = pd.read_excel(url, usecols = 'A:B') # First dataframe that looks at the sex columns of the excel book
