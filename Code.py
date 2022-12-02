@@ -6,7 +6,6 @@ Author: ''' adad '''
 License = GPL-3
 """
 import pandas as pd
-from googletrans import Translator
 
 url = "https://github.com/Makimousse/Cancer/raw/main/Datasheet1-sex%26age.xlsx" # Url variable represents the dataset that will be used to fetch the data from a person's age and sex.
 df = pd.read_excel(url, usecols = 'A:B') # First dataframe that looks at the sex columns of the excel book
@@ -15,7 +14,6 @@ df_sex = pd.read_excel(url, usecols = 'C:D') # Second dataframe for the gender-s
 url2 = "https://github.com/Makimousse/Cancer/raw/main/Datasheet2-country.xlsx" # Second url variable to fetch country-specific cancer percentage rates. I use a different excel sheet to not confuse the two
 df_country = pd.read_excel(url2, usecols = 'A:B')  # Country-specific dataframe
 
-translator = Translator()
 
 # On all of these funcitons, when the "return" statement is used, the code simply associates the function with the values
 
@@ -63,9 +61,9 @@ def gen_spes(sex, age): # Finds the user's survival chances for gender-specific 
 def country_percent(sex,country,percentage,file_contents): # Finds the user's chances of having cancer in otehr countries
     coef = float(percentage) / float(df[sex].iloc[49]) # Finds the coefficient to determine how chances of having cancer are affected by age, the data from the second excel book is somewhat based on an age of 49 for both men and women, so it is used as the reference point here. This coefficient is necessary since the second excel book doesnt indicate sex and age
     #row_find = df_country[df_country['Country'] == country].index.to_list() # This locates the row of the country in the excel book and indexes it to a list (the code doesnt work otherwise, not sure why)
-    row_find = file_contents.index(country) + 1
-    country_rates = [df_country['Rates'].iloc[row_find]] # Fetches the country-specific rates from the excel sheet with the row_find variable found earlier
-    country_spes_percent = coef * country_rates[0] # Gets the final country, age and sex specific cancer chances 
+    row_find = file_contents.index(country)
+    country_rates = df_country['Rates'].iloc[row_find] # Fetches the country-specific rates from the excel sheet with the row_find variable found earlier
+    country_spes_percent = coef * country_rates # Gets the final country, age and sex specific cancer chances 
     country_spes_percent  = '%.4f' % round(country_spes_percent, 4) # Rounds the percentage to 4 digits after the decimal point 
     return country_spes_percent
 
