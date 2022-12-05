@@ -6,6 +6,7 @@ Author: ''' adad '''
 License = GPL-3
 """
 import pandas as pd
+import json
 
 url = "https://github.com/Makimousse/Cancer/raw/main/Datasheet1-sex%26age.xlsx" # Url variable represents the dataset that will be used to fetch the data from a person's age and sex.
 df = pd.read_excel(url, usecols = 'A:B') # First dataframe that looks at the sex columns of the excel book
@@ -39,8 +40,8 @@ def input_country(): # This function asks for the user's country
     country = input("Would you like to know your chance of having cancer in other countries? If yes, please input the country's name, if no, input 'n':") # Asks the user if they would like to know their chances of having cancer in other countries. This country input will be used throughout the code
     return country
 def country_check(country): # This function creates a bool to check if the country is part of the second excel book's
-    country_list_file = open('Country_list.txt', 'r') # Instead of writing in the code a long list of countries, we here fetch this list from an external file
-    file_contents = country_list_file.read() # This interprets the contents of the external file
+    country_list_file = open('Country_list.json', 'r') # Instead of writing in the code a long list of countries, we here fetch this list from an external file
+    file_contents = json.load(country_list_file) # This interprets the contents of the external file
     country_list_check = country in file_contents
     return country_list_check, file_contents
 
